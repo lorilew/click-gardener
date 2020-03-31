@@ -52,14 +52,18 @@ function App() {
     const newBankAmount = bankAmount - amount
     if (newBankAmount < 0) {
       setError("You have no money to withdraw.")
+      return false;
     } else {
       setBankAmount(newBankAmount)
+      return true;
     }
   }
 
   const buySeeds = () => {
-    setSeedCount(seedCount + 1)
-    withdraw(1)
+    const withdrawSuccess = withdraw(1)
+    if(withdrawSuccess){
+      setSeedCount(seedCount + 1)
+    }
   }
 
   const digLand = () => {
